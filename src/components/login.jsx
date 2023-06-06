@@ -30,7 +30,7 @@ function Login() {
               <img  className='mt-4' style={{width:'100%'}}/>
             </Col>
             <Col lg='6' >
-                <h2 className="fw-bold mt-4 mb-5">LOGIN</h2>
+                <h2 className="fw-bold mt-4 mb-5">LOGIN!</h2>
                 <Row className='justify-content-center'>
                     <Col lg='5'>
                     <MDBInput wrapperClass='mb-4' placeholder='First Name' id='form1' type='text' style={{width:'15rem'}}/>
