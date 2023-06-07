@@ -8,13 +8,13 @@ import Userreg from './components/registration';
 import Regis from './components/regis';
 import Footer from './components/footer';
 import Login from './components/login';
-
+//hi
 function App() {
   return (
    <>
     <Navbs/>
     <Routes>
-      
+               
       <Route path='/' element={<Main/>}></Route>
       <Route path='/signin' element={<Login/>}></Route>
       <Route path='/register' element={<Userreg/>}></Route>
