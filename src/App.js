@@ -9,7 +9,7 @@ import Regis from './components/regis';
 import Footer from './components/footer';
 import Login from './components/login';
 
-function App() {
+function App() {                   //this is a functional component
   return (
    <>
     <Navbs/>
