@@ -8,7 +8,7 @@ import Userreg from './components/registration';
 import Regis from './components/regis';
 import Footer from './components/footer';
 import Login from './components/login';
-//hi
+
 function App() {
   return (
    <>
@@ -17,6 +17,7 @@ function App() {
                
       <Route path='/' element={<Main/>}></Route>
       <Route path='/signin' element={<Login/>}></Route>
+      <Route path='/signup' element={<Signup/>}></Route>
       <Route path='/register' element={<Userreg/>}></Route>
       <Route path='/register2' element={<Regis/>}></Route>
     </Routes>
