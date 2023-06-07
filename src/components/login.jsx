@@ -26,12 +26,12 @@ function Login() {
 
           
           <Row className='justify-content-end'>
-            <Col lg='6' >
+            <Col lg='6'>
               <img  className='mt-4' style={{width:'100%'}}/>
             </Col>
-            <Col lg='6' >
-                <h2 className="fw-bold mt-4 mb-5">LOGIN!</h2>
-                <Row className='justify-content-center'>
+            <Col lg='6'>
+                <h2 className="fw-bold mt-4 mb-5">LOGIN</h2>
+                {/* <Row className='justify-content-center'>
                     <Col lg='5'>
                     <MDBInput wrapperClass='mb-4' placeholder='First Name' id='form1' type='text' style={{width:'15rem'}}/>
                     
@@ -39,13 +39,18 @@ function Login() {
                     <Col lg='5'>
                     <MDBInput wrapperClass='mb-4' placeholder='Last Name' id='form1' type='text' style={{width:'15rem'}}/>   
                     </Col>
-                </Row>
+                </Row> */}
                 <Row className='justify-content-center'>
                    <Col lg='10'>
-                       <MDBInput wrapperClass='mb-4' placeholder='Email' id='form1' type='email' style={{width:'31rem'}}/>
+                       <MDBInput wrapperClass='mb-4' placeholder='Email' id='form1' type='email' style={{width:'20rem'}}/>
                    </Col>
                  </Row>
                  <Row className='justify-content-center'>
+                   <Col lg='10'>
+                       <MDBInput wrapperClass='mb-4' placeholder='Password' id='form1' type='email' style={{width:'20rem'}}/>
+                   </Col>
+                 </Row>
+                 {/* <Row className='justify-content-center'>
                     <Col lg='5'>
                     <MDBInput wrapperClass='mb-4' placeholder='Password' id='form1' type='password' style={{width:'15rem'}}/>
                     
@@ -53,7 +58,7 @@ function Login() {
                     <Col lg='5'>
                     <MDBInput wrapperClass='mb-4' placeholder='Confirm Password' id='form1' type='password' style={{width:'15rem'}}/>   
                     </Col>
-                </Row>
+                </Row> */}
                 <div className='d-flex justify-content-center mb-4'>
                   <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Subscribe to our newsletter' />
                 </div>
