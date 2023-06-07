@@ -15,6 +15,7 @@ function App() {
    <>
     <Navbs/>
     <Routes>
+      
       <Route path='/' element={<Main/>}></Route>
       <Route path='/signin' element={<Login/>}></Route>
       <Route path='/signup' element={<Signup/>}></Route>
