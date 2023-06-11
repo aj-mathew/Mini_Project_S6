@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .app {
+    text-align: center;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  
+  .parking-spots {
+    margin-top: 20px;
+  }
+  
+  .parking-spot {
+    display: inline-block;
+    border: 2px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    width: 220px;
+    text-align: center;
+  }
+  
+  .parking-spot.booked {
+    background-color: #f2f2f2;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  

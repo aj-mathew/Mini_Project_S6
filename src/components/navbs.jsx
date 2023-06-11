@@ -12,7 +12,7 @@ function Navbs() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/signin">Sign In</Nav.Link>
-            <Nav.Link href="/about">Sign In</Nav.Link>
+            <Nav.Link href="/parkingspot">Book Spot</Nav.Link>
             <NavDropdown title="Menu" id="basic-nav-dropdown">
               <NavDropdown.Item href="/register">Register</NavDropdown.Item>
               <NavDropdown.Item href="/register2">
