@@ -9,6 +9,8 @@ import Regis from './components/regis';
 import Footer from './components/footer';
 import Login from './components/login';
 import Signup from './components/signup';
+import ParkSpot from './components/parkingspot';
+import CarBookingForm from './components/bookingform';
 
 function App() {                
   return (
