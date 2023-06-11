@@ -9,16 +9,13 @@ import Regis from './components/regis';
 import Footer from './components/footer';
 import Login from './components/login';
 import Signup from './components/signup';
-import ParkSpot from './components/parkingspot';
-import CarBookingForm from './components/bookingform';
 
-
-function App() {
+function App() {                
   return (
    <>
     <Navbs/>
     <Routes>
-      
+               
       <Route path='/' element={<Main/>}></Route>
       <Route path='/signin' element={<Login/>}></Route>
       <Route path='/signup' element={<Signup/>}></Route>
