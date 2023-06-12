@@ -55,7 +55,7 @@ app.listen(9000,()=>{
 })
 
 /*
-qpp.post("/reg",(req,res)=>{
+app.post("/reg",(req,res)=>{
     var email=req.body.eml
     var password=req.body.pssw
 })
