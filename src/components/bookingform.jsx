@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './bookingform.css'
 import BookingConfirmation from './bookingconfirm';
+import AXIOS from "axios";
 
 // function BookingConfirmation() {
 //     return (
@@ -45,8 +46,8 @@ function CarBookingForm() {
   };
 
   return (
-    <div className="car-booking-form">
-      <h2>Car Booking Form</h2>
+    <div className="car-booking-form mb-4" >
+      <h2>Book a Spot</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="carRegistration">Car Registration Number</label>

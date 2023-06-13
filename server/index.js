@@ -61,7 +61,13 @@ qpp.post("/reg",(req,res)=>{
 })
 */
 
-app.post('/reg',(req,res)=>{
-    var email=req.body.eml
-    var password=req.body.pss
+app.post('/bookingform',(req,res)=>{
+    var registrationnum=req.body.carRegistraion
+    var owner=req.body.ownerName
+    var ownernum=req.body.ownerNumber
+    var date=req.body.bookingDate
+    var stime=req.body.bookingStartTime
+    var etime=req.body.bookingEndTime
+    res.send({'msg':'success'})
+    console.log(registrationnum+'\n'+owner+'\n'+ownernum+'\n'+date+'\n'+stime+'\n'+etime)
 })

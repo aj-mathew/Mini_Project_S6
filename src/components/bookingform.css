@@ -1,15 +1,23 @@
 .car-booking-form {
+    margin-top: 10px;
     max-width: 400px;
     margin: 0 auto;
+    border: 1px solid;
+    margin-bottom: 10px;
   }
   
   .car-booking-form h2 {
     text-align: center;
     margin-bottom: 20px;
+    margin-top: 20px;
+    font-weight: bold;
   }
   
   .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
   }
   
   label {
@@ -29,8 +37,10 @@
   
   button[type='submit'] {
     display: block;
-    width: 100%;
+    width: 90%;
     padding: 10px;
-    background-color:black;
+    background-color:  #59E;
     color:white;
+    margin-bottom: 20px;
+    margin: auto;
   }  

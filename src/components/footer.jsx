@@ -44,7 +44,7 @@ function Footer(){
                 <hr />
                 <div className="row">
                     <p className="col-sm justify-content-center text-center">
-                        &copy;{new Date().getFullYear}  mFash INC | All rights reserved | Terms of Service | Privacy 
+                        &copy;{new Date().getFullYear}  Parkify INC | All rights reserved | Terms of Service | Privacy 
                         
                     </p>
 

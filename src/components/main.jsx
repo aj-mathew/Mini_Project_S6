@@ -46,23 +46,37 @@ function Main() {
       </Carousel.Item>
     </Carousel>
 
-    <Container>
+    <Container className='mb-4'>
             <Row className='mt-4'> 
-                <Col lg='4'>
-                <Card style={{ width: '18rem' }}>
+                <Col lg='6'>
+                <Card className='card'>
       <Card.Img variant="top" src={bg1} />
       <Card.Body>
-        <Card.Title>The All Seeing Eye</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+        <Card.Title className='justify-content-center text-center'>Leave a Rating</Card.Title>
+        <Card.Text className='justify-content-center text-center'>
+          How was your experience with us?
+          Your feedback is valuable to us 
+          Please help us to improve 
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Button variant="primary" className='flex'>Rate Us</Button>
       </Card.Body>
     </Card>
  </Col>
 
- <Col lg='4'>
+ <Col lg='6'>
+                <Card>
+      <Card.Img variant="top" src={bg1} />
+      <Card.Body>
+        <Card.Title className='justify-align-center text-center'>Manage Your Bookings</Card.Title>
+        <Card.Text className='justify-content-center text-center'>
+          Manage all your bookings here
+        </Card.Text>
+        <Button variant="primary">Manage</Button>
+      </Card.Body>
+    </Card>
+ </Col>
+
+ {/* <Col lg='4'>
                 <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={bg1} />
       <Card.Body>
@@ -74,26 +88,12 @@ function Main() {
         <Button variant="primary">Go somewhere</Button>
       </Card.Body>
     </Card>
- </Col>
-
- <Col lg='4'>
-                <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={bg1} />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
- </Col>
+ </Col> */}
 
  
             </Row>
 
-
+{/* 
       <Row className='mt-4'>
         <Col lg='4'>
         <Card style={{ width: '18rem' }}>
@@ -143,7 +143,7 @@ function Main() {
 
 
         </Col>
-      </Row>
+      </Row> */}
 
         </Container>
 
