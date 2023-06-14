@@ -11,6 +11,8 @@ import Login from './components/login';
 import Signup from './components/signup';
 import ParkSpot from './components/parkingspot';
 import CarBookingForm from './components/bookingform';
+import UserSignIn from './components/usersign';
+import OwnerSignIn from './components/ownersign';
 
 function App() {                
   return (
@@ -25,6 +27,8 @@ function App() {
       <Route path='/register2' element={<Regis/>}></Route>
       <Route path='/parkingspot' element={<ParkSpot/>}></Route>
       <Route path='/bookingform' element={<CarBookingForm/>}></Route>
+      <Route path='/usersignin' element={<UserSignIn/>}></Route>
+      <Route path='/ownersignin' element={<OwnerSignIn/>}></Route>
     </Routes>
     <Footer/>
    </>

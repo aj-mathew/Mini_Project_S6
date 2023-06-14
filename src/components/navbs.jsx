@@ -12,19 +12,17 @@ function Navbs() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/signin">Sign In</Nav.Link>
-            <Nav.Link href="/parkingspot">Book Spot</Nav.Link>
-            <NavDropdown title="Menu" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/register">Register</NavDropdown.Item>
-              <NavDropdown.Item href="/register2">
-                Register2
+           
+            <NavDropdown title="Sign In" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/usersignin">User</NavDropdown.Item>
+              <NavDropdown.Item href="/ownersignin">
+                Owner
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
+             
             </NavDropdown>
+            <Nav.Link href="/parkingspot">Book Spot</Nav.Link>
+            <Nav.Link href="/signin">Sign In</Nav.Link>
+           
           </Nav>
         </Navbar.Collapse>
       </Container>

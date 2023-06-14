@@ -15,7 +15,7 @@ import { Row,Col } from 'react-bootstrap';
 import { useState } from 'react';
 
 
-function Login() {
+function OwnerSignIn() {
 
   const [eml,setEml]=useState("")
   const [pssw,setPssw]=useState("")
@@ -145,4 +145,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default OwnerSignIn;
