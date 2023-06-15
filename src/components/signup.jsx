@@ -14,26 +14,59 @@ from 'mdb-react-ui-kit';
 import { Row,Col } from 'react-bootstrap';
 import { useState } from 'react';
 import AXIOS from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
-    const[fnam,setFnam]=useState('')
+    const[fnam,setFam]=useState('')
     const[lnam,setLnam]=useState('')
     const[eml,setEml]=useState('')
     const[pss,setPss]=useState('')
     const[cpss,setCpss]=useState('')
+    const navigate=useNavigate()
     const Create=async()=>{
         await AXIOS.post('http://localhost:9000/signup',{fnam:fnam,lnam:lnam,eml:eml,pss:pss,cpss:cpss}).then((res)=>{
-          console.log(res)
-          console.log(res.data)
-          console.log(res.data.msg)
+        console.log(res)
+        console.log(res.data)
+        console.log(res.data.msg)
         })
+       
         alert("Registration Successful!")
-        setFnam(" ")
+        navigate("/login")
+        setFam(" ");
         setLnam(" ")
         setEml(" ")
         setPss(" ")
         setCpss(" ")
+
+        // console.log(fnam,lnam,eml,pss);
     }
+    
+    const handleSignup = async () => {
+      try {
+        
+        const response = await AXIOS.post('http://localhost:9000/signup', {
+          fnam,
+          lnam,
+          eml,
+          pss,
+          cpss
+        });
+        
+        console.log(response);
+        console.log(response.data);
+        console.log(response.data.msg);
+        alert('Registration Successful!');
+        setFam(" ");
+        setLnam(" ");
+        setEml(" ");
+        setPss(" ");
+        setCpss(" ");
+      } catch (error) {
+        console.error(error);
+        alert('An error occurred during registration.');
+      }
+     
+    };
     return (
       <MDBContainer fluid>
   
@@ -48,7 +81,7 @@ function Signup() {
                   <h2 className="fw-bold mt-4 mb-5">Sign up now</h2>
                   <Row className='justify-content-center'>
                       <Col lg='5'>
-                      <MDBInput wrapperClass='mb-4' value={fnam} placeholder='First Name' id='form1' type='text' onChange={(e)=>setFnam(e.target.value)} style={{width:'15rem'}}/>
+                      <MDBInput wrapperClass='mb-4' value={fnam} placeholder='First Name' id='form1' type='text' onChange={(e)=>setFam(e.target.value)} style={{width:'15rem'}}/>
                       
                       </Col>
                       <Col lg='5'>

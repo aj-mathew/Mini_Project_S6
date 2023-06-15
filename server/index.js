@@ -1,73 +1,96 @@
-var express = require('express')
-var app=express()
-app.use(express.json())
+// Required dependencies
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
 var cors=require("cors")
 app.use(cors())
-app.use(express.urlencoded({extended:true}))
-const mongoose = require('mongoose');
+
+// Create Express application
 
 
+// Configure body-parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-main().catch(err => console.log(err));
+// Connect to MongoDB
+mongoose.connect('mongodb+srv://adil315:adil3105@cluster0.ddmrjkm.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('Failed to connect to MongoDB', err));
 
-async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/ajmathew');
-  console.log("Connected and Running.....")
-// use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
-}
-const formSchema =new mongoose.Schema({
-    email : String,
-    password :String
-})
-const Empinfo =mongoose.model('Empinfo',formSchema)
-app.post('/reg',(req,res)=>{
-    var email=req.body.eml
-    var password=req.body.pss
-    res.send({'msg':'success'})
-    console.log(email+" "+password)
-    
-    const emp= new Empinfo({email:email,password:password})
-    emp.save() //should we empty the variable everytime we enter the value
-    
-})
-const stuSchema=new mongoose.Schema({
-    name:String,
-    email:String,
-    phone:String,
-    gender:String,
-    course:String
+// Define User schema
+const userSchema = new mongoose.Schema({
+  fnam: String,
+  lnam: String,
+  eml: String,
+  pss: String,
+  cpss: String
+});
 
-})
-const Stuinfo = mongoose.model('Stuinfo',stuSchema)
-app.post('/stureg',(req,res)=>{
-    var name=req.body.nam
-    var email=req.body.eml
-    var phone=req.body.phn
-    var gender=req.body.gen
-    var course=req.body.cose
-    res.send({'msg':'success'})
-    console.log(name+'\n'+email+'\n'+phone+'\n'+gender+course)
-    const stu=new Stuinfo({name:name,email:email,phone:phone,gender:gender+"",course:course})
-    stu.save()
-})
-app.listen(9000,()=>{
-    console.log("server running http://localhost:9000/")
-})
+const User = mongoose.model('User', userSchema);
 
-/*
-app.post("/reg",(req,res)=>{
-    var email=req.body.eml
-    var password=req.body.pssw
-})
-*/
+// Signup route
+app.post('/signup', async (req, res) => {
+  try {
+    const { fnam,lnam,eml,pss,cpss } = req.body;
 
-app.post('/bookingform',(req,res)=>{
-    var registrationnum=req.body.carRegistraion
-    var owner=req.body.ownerName
-    var ownernum=req.body.ownerNumber
-    var date=req.body.bookingDate
-    var stime=req.body.bookingStartTime
-    var etime=req.body.bookingEndTime
-    res.send({'msg':'success'})
-    console.log(registrationnum+'\n'+owner+'\n'+ownernum+'\n'+date+'\n'+stime+'\n'+etime)
-})
+    // Check if user already exists
+    const existingUser = await User.findOne({ eml });
+    if (existingUser) {
+      return res.status(400).json({ message: 'User already exists' });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(pss, 10);
+
+    // Create new user
+    const newUser = new User({
+      fnam,
+      lnam,
+      eml,
+      pss: hashedPassword
+    });
+
+    // Save the user to the database
+    await newUser.save();
+
+    res.status(201).json({ message: 'User created successfully' });
+  } catch (error) {
+    console.error('Error creating user', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Login route
+app.post('/login', async (req, res) => {
+  try {
+    const { eml, pss } = req.body;
+
+    // Check if user exists
+    const user = await User.findOne({ eml });
+    if (!user) {
+      return res.status(200).json({ message: 'User not found' });
+      
+    }
+
+    // Compare passwords
+    const passwordMatch = await bcrypt.compare(pss, user.pss);
+    if (!passwordMatch) {
+      return res.status(200).json({ message: 'Invalid credentials' });
+    }
+
+    // Successful login
+    res.status(200).json({ message: 'Login successful' });
+  } catch (error) {
+    console.error('Error during login', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Start the server
+const port = 9000;
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
+});
+

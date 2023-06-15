@@ -14,8 +14,8 @@ function Navbs() {
           <Nav className="me-auto">
            
             <NavDropdown title="Sign In" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/usersignin">User</NavDropdown.Item>
-              <NavDropdown.Item href="/ownersignin">
+              <NavDropdown.Item href="/">User</NavDropdown.Item>
+              <NavDropdown.Item href="/login">
                 Owner
               </NavDropdown.Item>
              

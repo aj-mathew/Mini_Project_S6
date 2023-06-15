@@ -60,7 +60,7 @@ function CarBookingForm() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="ownerName">Owner Name</label>
+          <label htmlFor="ownerName">Name</label>
           <input
             type="text"
             id="ownerName"
@@ -70,7 +70,7 @@ function CarBookingForm() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="ownerNumber">Owner Contact Number</label>
+          <label htmlFor="ownerNumber">Contact Number</label>
           <input
             type="tel"
             id="ownerNumber"

@@ -13,13 +13,29 @@ import {
 from 'mdb-react-ui-kit';
 import { Row,Col } from 'react-bootstrap';
 import { useState } from 'react';
+import AXIOS from 'axios';
 
 
 function Login() {
 
   const [eml,setEml]=useState("")
-  const [pssw,setPssw]=useState("")
+  const [pss,setPssw]=useState("")
   const [selectedOption, setSelectedOption] = useState('');  
+  const Create=async()=>{
+    await AXIOS.post('http://localhost:9000/login',{eml:eml,pss:pss}).then((res)=>{
+    console.log(res)
+    console.log(res.data)
+    console.log(res.data.msg)
+    })
+   
+    
+    setEml(" ")
+    setPssw(" ")
+  
+
+    // console.log(fnam,lnam,eml,pss);
+}
+
   
   return (
     <MDBContainer fluid>
@@ -72,12 +88,12 @@ function Login() {
                      </div>
                 <Row className='justify-content-center'>
                    <Col lg='10'>
-                       <MDBInput wrapperClass='mb-4' placeholder='Email' id='form1' type='email' onChange={(e)=>setEml(e.target.value)} style={{width:'20rem'}}/>
+                       <MDBInput wrapperClass='mb-4' placeholder='Email' value={eml} id='form1' type='email' onChange={(e)=>setEml(e.target.value)} style={{width:'20rem'}}/>
                    </Col>
                  </Row>
                  <Row className='justify-content-center'>
                    <Col lg='10'>
-                       <MDBInput wrapperClass='mb-4' placeholder='Password' id='form1' type='email' onChange={(e)=>setEml(e.target.value)} style={{width:'20rem'}}/>
+                       <MDBInput wrapperClass='mb-4' placeholder='Password' id='form1' value={pss} type='password' onChange={(e)=>setPssw(e.target.value)} style={{width:'20rem'}}/>
                    </Col>
                  </Row>
                  {/* <Row className='justify-content-center'>
@@ -94,7 +110,7 @@ function Login() {
                 </div>
                 
 
-                <MDBBtn className='w-40 mt-2 mb-5' size='md'>Login</MDBBtn>
+                <MDBBtn className='w-40 mt-2 mb-5' size='md' onClick={Create}>Login</MDBBtn>
                 <div>
                      <p className="mb-0">Don't have an account? <a href="/signup" class="text-black-50 fw-bold">Sign Up</a></p>
                 </div>
