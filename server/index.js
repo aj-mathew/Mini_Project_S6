@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 var cors=require("cors")
 app.use(cors())
+const session=require("express-session")
 
 // Create Express application
 
@@ -25,15 +26,31 @@ const userSchema = new mongoose.Schema({
   lnam: String,
   eml: String,
   pss: String,
-  cpss: String
+  role: String
 });
 
 const User = mongoose.model('User', userSchema);
+app.use(
+  session({
+    secret: 'f5bdeca5d7f6893de827d2b7afcaa66fb2dec349c734bed749b3e75b737072aa', // Replace with your secret key for session encryption
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
-// Signup route
+// const Owner = mongoose.model('Owner', userSchema);
+// app.use(
+//   session({
+//     secret: 'f5bdeca5d7f6893de827d2b7afcaa66fb2dec349c734bed749b3e75b737072aa', // Replace with your secret key for session encryption
+//     resave: false,
+//     saveUninitialized: true,
+//   })
+// );
+
+// SIGN UP
 app.post('/signup', async (req, res) => {
   try {
-    const { fnam,lnam,eml,pss,cpss } = req.body;
+    const { fnam,lnam,eml,pss,role} = req.body;
 
     // Check if user already exists
     const existingUser = await User.findOne({ eml });
@@ -49,45 +66,50 @@ app.post('/signup', async (req, res) => {
       fnam,
       lnam,
       eml,
-      pss: hashedPassword
+      pss: hashedPassword,
+      role
     });
 
     // Save the user to the database
     await newUser.save();
 
-    res.status(201).json({ message: 'User created successfully' });
+    res.status(201).json({ message: 'Success' });
   } catch (error) {
     console.error('Error creating user', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
 
-// Login route
+// LOGIN
 app.post('/login', async (req, res) => {
-  try {
-    const { eml, pss } = req.body;
+  const { eml, pss } = req.body;
 
-    // Check if user exists
+  try {
+    // Find the user by email
     const user = await User.findOne({ eml });
+    
     if (!user) {
-      return res.status(200).json({ message: 'User not found' });
-      
+      return res.status(404).json({ message: 'User not found' });
     }
 
     // Compare passwords
     const passwordMatch = await bcrypt.compare(pss, user.pss);
     if (!passwordMatch) {
-      return res.status(200).json({ message: 'Invalid credentials' });
+      return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // Successful login
-    res.status(200).json({ message: 'Login successful' });
+    // Login successful
+    res.status(200).json({ message: 'Login successful', userinfo: user});
   } catch (error) {
-    console.error('Error during login', error);
+    console.error('Error logging in', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
 
+
+app.get("mongodb+srv://adil315:adil3105@cluster0.ddmrjkm.mongodb.net/?retryWrites=true&w=majority",(res,req)=>{
+  
+})
 // Start the server
 const port = 9000;
 app.listen(port, () => {

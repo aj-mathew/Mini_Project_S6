@@ -4,8 +4,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './navbs.css'
 
-function Navbs() {
+function User_navbs() {
   return (
+    
     <Navbar className='navbs' expand="lg">
       <Container>
         <Navbar.Brand href="/">Parkify</Navbar.Brand>
@@ -15,7 +16,7 @@ function Navbs() {
            
             <NavDropdown title="Sign In" id="basic-nav-dropdown">
               <NavDropdown.Item href="/userlogin">User</NavDropdown.Item>
-              <NavDropdown.Item href="/login">
+              <NavDropdown.Item href="/ownerlogin">
                 Owner
               </NavDropdown.Item>
              
@@ -30,4 +31,4 @@ function Navbs() {
   );
 }
 
-export default Navbs;
+export default User_navbs;

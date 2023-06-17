@@ -1,10 +1,8 @@
-import User from './components/user';
+
 import Main from './components/main';
 import Gallery from './components/gallery';
-import Cardz from './components/cardz';
 import Navbs from './components/navbs';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Car from './components/car';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
