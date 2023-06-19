@@ -1,7 +1,5 @@
-
 import Main from './components/main';
 import Gallery from './components/gallery';
-import Navbs from './components/navbs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';

@@ -6,6 +6,7 @@ import './navbs.css'
 
 function Navbs() {
   return (
+    
     <Navbar className='navbs' expand="lg">
       <Container>
         <Navbar.Brand href="/">Parkify</Navbar.Brand>
@@ -15,13 +16,15 @@ function Navbs() {
            
             <NavDropdown title="Sign In" id="basic-nav-dropdown">
               <NavDropdown.Item href="/userlogin">User</NavDropdown.Item>
-              <NavDropdown.Item href="/login">
+              <NavDropdown.Item href="/ownerlogin">
                 Owner
               </NavDropdown.Item>
              
             </NavDropdown>
+            
             <Nav.Link href="/parkingspot">Book Spot</Nav.Link>
             <Nav.Link href="/signin">Sign In</Nav.Link>
+           
            
           </Nav>
         </Navbar.Collapse>

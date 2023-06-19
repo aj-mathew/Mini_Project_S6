@@ -3,7 +3,7 @@ import bg1 from '../images/image.jpg';
 import bg2 from '../images/image2.jpg';
 import bg3 from '../images/image3.jpg';
 import { Container,Card,Button,Row,Col} from 'react-bootstrap';
-import Navbs from './navbs';
+import Navbs from "./navbs"
 
 function Main() {
   return (

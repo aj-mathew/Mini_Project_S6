@@ -23,50 +23,55 @@ function Signup() {
     const[pss,setPss]=useState('')
     const[cpss,setCpss]=useState('')
     const navigate=useNavigate()
-    const Create=async()=>{
-        await AXIOS.post('http://localhost:9000/signup',{fnam:fnam,lnam:lnam,eml:eml,pss:pss,cpss:cpss}).then((res)=>{
-        console.log(res)
-        console.log(res.data)
-        console.log(res.data.msg)
-        })
-       
-        alert("Registration Successful!")
-        navigate("/login")
-        setFam(" ");
-        setLnam(" ")
-        setEml(" ")
-        setPss(" ")
-        setCpss(" ")
-
-        // console.log(fnam,lnam,eml,pss);
-    }
+    const [role, setRole] = useState('');  
     
-    const handleSignup = async () => {
+    const Create = async () => {
       try {
-        
         const response = await AXIOS.post('http://localhost:9000/signup', {
           fnam,
           lnam,
           eml,
           pss,
-          cpss
+          cpss,
+          role
         });
-        
-        console.log(response);
-        console.log(response.data);
-        console.log(response.data.msg);
-        alert('Registration Successful!');
-        setFam(" ");
-        setLnam(" ");
-        setEml(" ");
-        setPss(" ");
-        setCpss(" ");
-      } catch (error) {
-        console.error(error);
-        alert('An error occurred during registration.');
+    
+        console.log(response.data.message);
+    
+        if (response.data.message === 'Success') {
+          alert('Registration Successful!');
+          navigate('/userlogin');
+          setFam('');
+          setLnam('');
+          setEml('');
+          setPss('');
+          setCpss('');
+          setRole('');
+        } 
+        else if(response.data.message == 'User already exists') {
+          alert('User already exists');
+          
+          setFam('');
+          setLnam('');
+          setEml('');
+          setPss('');
+          setCpss('');
+          setRole('');
+          console.log("user exists bro")
+        }
+       }
+       catch (error) {
+        console.error('Error creating user', error);
+        if (error.response) {
+          alert(error.response.data.message);
+        } else {
+          alert('Internal server error');
+        }
       }
-     
     };
+    
+
+    
     return (
       <MDBContainer fluid>
   
@@ -79,6 +84,33 @@ function Signup() {
             <Row className='justify-content-center'>
               <Col lg='6' >
                   <h2 className="fw-bold mt-4 mb-5">Sign up now</h2>
+                  <div>
+                
+                <Col>
+                 <input
+                    type="radio"
+                    name="role"
+                    value="user"
+                     checked={role === 'user'}
+                     onChange={()=>setRole('user')}
+                  />{'  '}
+                User
+               
+               </Col>
+                
+                 <Col>
+
+                 <input
+                     type="radio"
+                     name="role"
+                     value="owner"
+                     checked={role === 'owner'}
+                     onChange={()=>setRole('owner')}
+                     />{'  '}
+                    Owner
+                 </Col>
+                    
+                  </div> 
                   <Row className='justify-content-center'>
                       <Col lg='5'>
                       <MDBInput wrapperClass='mb-4' value={fnam} placeholder='First Name' id='form1' type='text' onChange={(e)=>setFam(e.target.value)} style={{width:'15rem'}}/>
@@ -111,44 +143,6 @@ function Signup() {
             
               </Col>
             </Row>
-  
-            {/* <MDBRow>
-              <MDBCol col='3'>
-                <MDBInput wrapperClass='mb-4' label='First name' id='form1' type='text'/>
-              </MDBCol>
-  
-              <MDBCol col='6'>
-                <MDBInput wrapperClass='mb-4' label='Last name' id='form1' type='text'/>
-              </MDBCol>
-            </MDBRow> */}
-  
-            {/* <MDBInput wrapperClass='mb-4' label='Email' id='form1' type='email'/>
-            <MDBInput wrapperClass='mb-4' label='Password' id='form1' type='password'/> */}
-  
-            
-  
-            {/* <div className="text-center">
-  
-              <p>or sign up with:</p>
-  
-              <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
-                <MDBIcon fab icon='facebook-f' size="sm"/>
-              </MDBBtn>
-  
-              <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
-                <MDBIcon fab icon='twitter' size="sm"/>
-              </MDBBtn>
-  
-              <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
-                <MDBIcon fab icon='google' size="sm"/>
-              </MDBBtn>
-  
-              <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
-                <MDBIcon fab icon='github' size="sm"/>
-              </MDBBtn>
-  
-            </div>
-               */}
           </MDBCardBody>
         </MDBCard>
   
