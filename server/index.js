@@ -1,6 +1,9 @@
-var express = require('express')
-var app=express()
-app.use(express.json())
+// Required dependencies
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
 var cors=require("cors")
 app.use(cors())
 const session=require("express-session")
@@ -8,8 +11,14 @@ const session=require("express-session")
 // Create Express application
 
 
+// Configure body-parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-main().catch(err => console.log(err));
+// Connect to MongoDB
+mongoose.connect('mongodb+srv://adil315:adil3105@cluster0.ddmrjkm.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('Failed to connect to MongoDB', err));
 
 // Define User schema
 const userSchema = new mongoose.Schema({
