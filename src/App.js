@@ -9,6 +9,8 @@ import ParkSpot from './components/parkingspot';
 import CarBookingForm from './components/bookingform';
 import User_login from './components/userlogin';
 import User_loadout from './components/userloadout';
+import Owner_Loadout from './components/ownerloadout';
+import Create_Spot from './components/createspot';
 
 function App() {                
   return (
@@ -21,6 +23,8 @@ function App() {
       <Route path='/parkingspot' element={<ParkSpot/>}></Route>
       <Route path='/bookingform' element={<CarBookingForm/>}></Route>
       <Route path='/userlogin' element={<User_login/>}></Route>
+      <Route path='/ownerloadout' element={<Owner_Loadout/>}></Route>
+      <Route path='/createspot' element={<Create_Spot/>}></Route>
       
     </Routes>
     <Footer/>

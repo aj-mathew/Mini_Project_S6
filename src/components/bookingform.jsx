@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './bookingform.css'
 import BookingConfirmation from './bookingconfirm';
 import AXIOS from "axios";
+import { useNavigate } from 'react-router-dom';
 
 // function BookingConfirmation() {
 //     return (
@@ -22,28 +23,13 @@ function CarBookingForm() {
   const [bookingDate, setBookingDate] = useState('');
   const [bookingStartTime, setBookingStartTime] = useState('');
   const [bookingEndTime, setBookingEndTime] = useState('');
+  const navigate=useNavigate()
 
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted!');
-    console.log('Car Registration:', carRegistration);
-    console.log('Owner Name:', ownerName);
-    console.log('Owner Number:', ownerNumber);
-    console.log('Booking Date:', bookingDate);
-    console.log('Booking Start Time:', bookingStartTime);
-    console.log('Booking End Time:', bookingEndTime);
-
-
-    <BookingConfirmation/>
-    setCarRegistration(" ")
-    setOwnerName(" ")
-    setOwnerNumber(" ")
-    setBookingDate(" ")
-    setBookingStartTime(" ")
-    setBookingEndTime(" ")
-  };
+  const handleSubmit = async()=>{
+    
+  }
+   
 
   return (
     <div className="car-booking-form mb-4" >

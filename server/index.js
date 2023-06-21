@@ -29,7 +29,24 @@ const userSchema = new mongoose.Schema({
   role: String
 });
 
+const parkingspotSchema = new mongoose.Schema({
+  name: String,
+  description: String,
+  bookingstatus: Boolean
+});
+
+const formdataSchema =new mongoose.Schema({
+  regisNum: String,
+  name: String,
+  contactNum: String,  //ask jaggu wheather string or num
+  bookingDate: Date,
+  startTime: String,
+  endTime: String  //ask jaggu
+});
+
 const User = mongoose.model('User', userSchema);
+const Spot = mongoose.model('Spot',parkingspotSchema)
+const Form = mongoose.model('Form',formdataSchema)
 app.use(
   session({
     secret: 'f5bdeca5d7f6893de827d2b7afcaa66fb2dec349c734bed749b3e75b737072aa', // Replace with your secret key for session encryption
@@ -58,6 +75,12 @@ app.post('/signup', async (req, res) => {
       return res.status(400).json({ message: 'User already exists' });
     }
 
+    //to make role selection mandatory
+    if(!role && !fnam && !lnam && !eml && !pss)
+    {
+      return res.status(400).json({message:"Missing Field!"})
+    }
+
     // Hash the password
     const hashedPassword = await bcrypt.hash(pss, 10);
 
@@ -66,7 +89,7 @@ app.post('/signup', async (req, res) => {
       fnam,
       lnam,
       eml,
-      pss: hashedPassword,
+      pss: hashedPassword,    //same for booking 
       role
     });
 

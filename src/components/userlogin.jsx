@@ -32,7 +32,7 @@ function User_login() {
           navigate('/userloadout');
         } 
         else if(response.data.userinfo.role === 'owner'){
-          alert("I am an owner wee"); // navigate to owner loadout
+          navigate('/ownerloadout') // navigate to owner loadout
         }
       }
     } catch (error) {

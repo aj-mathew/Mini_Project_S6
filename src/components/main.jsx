@@ -42,7 +42,7 @@ function Main() {
         <Carousel.Caption>
           <h3>Koenigsegg Agera RS</h3>
           <p>
-            
+          
           </p>
         </Carousel.Caption>
       </Carousel.Item>

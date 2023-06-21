@@ -6,30 +6,86 @@ import './navbs.css'
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './parkingspot.css'
+import Carousel from 'react-bootstrap/Carousel';
+import bg1 from '../images/image.jpg';
+import bg2 from '../images/image2.jpg';
+import bg3 from '../images/image3.jpg';
+import { Button } from 'react-bootstrap';
+
 
 function User_loadout (){
   return (
-    <Navbar className='navbs' expand="lg">
+    <>
+     <Navbar className='navbs' expand="lg">
       <Container>
         <Navbar.Brand href="/">Parkify</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
            
-            <NavDropdown title="Sign In" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/userlogin">User</NavDropdown.Item>
-              <NavDropdown.Item href="/ownerlogin">
-                Owner
-              </NavDropdown.Item>
-             
-            </NavDropdown>
-            <Nav.Link href="/parkingspot">Book Spot</Nav.Link>
-            <Nav.Link href="/signin">Sign In</Nav.Link>
+          
+           
+            <Nav.Link href="/">Logout</Nav.Link>
            
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
+
+
+    <Carousel>
+      <Carousel.Item interval={1000}>
+        <img
+          className="d-block w-100"
+          src={bg1}
+          alt="First slide"
+          style={{width:'100'}}
+        />
+        <Carousel.Caption>
+          <h3>First slide label</h3>
+          <p>
+          <Button variant="primary" size="lg" href='/parkingspot'>
+          Book Spot
+        </Button>
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item interval={500}>
+        <img
+          className="d-block w-100"
+          src={bg2}
+          alt="Second slide"
+        />
+        <Carousel.Caption>
+          <h3>Second slide label</h3>
+          <p>
+          <Button variant="primary" size="lg" href='/parkingspot'>
+          Book Spot
+        </Button>
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={bg3}
+          alt="Third slide"
+        />
+        <Carousel.Caption>
+          <h3>Koenigsegg Agera RS</h3>
+          <p>
+          <Button variant="primary" size="lg" href='/parkingspot'>
+          Book Spot
+        </Button>
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
+
+    
+</>
+   
+
   );
  
   

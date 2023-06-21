@@ -14,16 +14,17 @@ function Navbs() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
            
-            <NavDropdown title="Sign In" id="basic-nav-dropdown">
+          <Nav.Link href="/userlogin">Sign In</Nav.Link>
+            {/* <NavDropdown title="Sign In" id="basic-nav-dropdown">
               <NavDropdown.Item href="/userlogin">User</NavDropdown.Item>
               <NavDropdown.Item href="/ownerlogin">
                 Owner
               </NavDropdown.Item>
              
             </NavDropdown>
+             */}
             
-            <Nav.Link href="/parkingspot">Book Spot</Nav.Link>
-            <Nav.Link href="/signin">Sign In</Nav.Link>
+           
            
            
           </Nav>
