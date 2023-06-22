@@ -10,10 +10,10 @@ const session=require("express-session")
 
 // Create Express application
 
-
-// Configure body-parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Configure body-parser middleware
 
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://adil315:adil3105@cluster0.ddmrjkm.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -36,12 +36,13 @@ const parkingspotSchema = new mongoose.Schema({
 });
 
 const formdataSchema =new mongoose.Schema({
-  regisNum: String,
-  name: String,
-  contactNum: String,  //ask jaggu wheather string or num
-  bookingDate: Date,
-  startTime: String,
-  endTime: String  //ask jaggu
+  carRegistration:String,
+  ownerName:String,
+  ownerNumber:String,
+  bookingDate:Date,    //same for booking 
+  bookingStartTime:String,
+  bookingEndTime:String,
+  selectedSpot:String
 });
 
 const User = mongoose.model('User', userSchema);
@@ -103,6 +104,86 @@ app.post('/signup', async (req, res) => {
   }
 });
 
+//booking form
+app.post('/bookingform', async (req, res) => {
+  try {
+    const { carRegistration,ownerName,ownerNumber,bookingDate,bookingStartTime,bookingEndTime,selectedSpot } = req.body;
+
+    // Check if user already exists
+    const existingCar = await Form.findOne({ carRegistration });
+    if (existingCar) {
+      return res.status(400).json({ message: 'Cannot book more than one spot for a car' });
+    }
+
+    //to make role selection mandatory
+    if(!carRegistration && !ownerName && !ownerNumber && !bookingDate && !bookingStartTime && !bookingEndTime &&!selectedSpot)
+    {
+      return res.status(400).json({message:"Missing Field!"})
+    }
+
+    // Create new user
+    const newCar = new Form({
+      carRegistration,
+      ownerName,
+      ownerNumber,
+      bookingDate,    //same for booking 
+      bookingStartTime,
+      bookingEndTime,
+      selectedSpot
+    });
+
+    // Save the user to the database
+    await newCar.save();
+
+    await Spot.updateOne({
+      name:selectedSpot
+    },{
+      bookingstatus:true
+    })
+
+    res.status(201).json({ message: 'Success' });
+  } catch (error) {
+    console.error('Error creating user', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+//create spot
+
+app.post('/createspot', async (req, res) => {
+  try {
+    const { spotName,description } = req.body;
+    console.log(req.body)
+
+    // Check if user already exists
+    const existingSpot = await Spot.findOne({ name:spotName });
+    if (existingSpot) {
+      return res.status(400).json({ message: 'Spot already exist' });
+    }
+
+    //to make role selection mandatory
+    if(!spotName && !description)
+    {
+      return res.status(400).json({message:"Missing Field!"})
+    }
+
+    // Create new user
+    const newSpot = new Spot({
+      name:spotName,
+      description:description,
+      bookingstatus: false
+    });
+
+    // Save the user to the database
+    await newSpot.save();
+
+    res.status(201).json({ message: 'Success' });
+  } catch (error) {
+    console.error('Error creating user', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 // LOGIN
 app.post('/login', async (req, res) => {
   const { eml, pss } = req.body;
@@ -130,8 +211,11 @@ app.post('/login', async (req, res) => {
 });
 
 
-app.get("mongodb+srv://adil315:adil3105@cluster0.ddmrjkm.mongodb.net/?retryWrites=true&w=majority",(res,req)=>{
-  
+app.get("/getspots",async(req,res)=>{
+  const data = await Spot.find({
+    bookingstatus: false
+  });
+  return res.status(200).json(data)
 })
 // Start the server
 const port = 9000;
